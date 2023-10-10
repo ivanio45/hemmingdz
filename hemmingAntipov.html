@@ -1,0 +1,58 @@
+<html>
+	<head>
+		<title>Antipov Hemming code </title>
+		<script>
+		function code(){
+			let inpText=document.getElementById('inpMassage').value;
+			inpText=inpText.split('');
+			for(let i=0;i<inpText.length;i++){
+				inpText[i]=parseInt(inpText[i]);
+				}
+			let cb1=(inpText[0]+inpText[1]+inpText[2])%2;
+			let cb2=(inpText[1]+inpText[2]+inpText[3])%2;
+			let cb3=(inpText[1]+inpText[3]+inpText[0])%2;
+			inpText.push(cb1,cb2,cb3)
+			document.getElementById('outputMassage').value=inpText.join('');
+			}
+		function check(){
+			let inpText=document.getElementById('outputMassage').value;
+			inpText=inpText.split('');
+			for(let i=0;i<inpText.length;i++){
+				inpText[i]=parseInt(inpText[i]);
+				}
+			sums1=inpText[0]+inpText[1]+inpText[2]+inpText[4]
+			sums2=inpText[1]+inpText[2]+inpText[3]+inpText[5]
+			sums3=inpText[0]+inpText[1]+inpText[3]+inpText[6]
+			if (sums1%2==1 && sums2%2==1 && sums3%2==1){
+				inpText[1]=(inpText[1]+1)%2;
+				}
+			else if (sums1%2==1 && sums2%2==1){
+				inpText[2]=(inpText[2]+1)%2;
+				}
+			else if (sums2%2==1 && sums3%2==1){
+				inpText[3]=(inpText[3]+1)%2;
+				}
+			else if (sums3%2==1 && sums1%2==1){
+				inpText[0]=(inpText[0]+1)%2;
+				}
+			else if (sums1%2==1){
+				inpText[4]=(inpText[4]+1)%2;
+				}
+			else if (sums2%2==1){
+				inpText[5]=(inpText[5]+1)%2;
+				}
+			else if (sums3%2==1){
+				inpText[6]=(inpText[6]+1)%2;
+				}
+			document.getElementById('OrigMassage').value=inpText.join('');
+			}
+			
+		</script>
+	</head>
+<body>
+	<h1>Antipov,Hemming code</h1>
+	<p><input type='txt' id='inpMassage'/>input Massage,4 bits</p>
+	<p><input type='button' value='Code' onclick='code()'/></p>
+	<p><input type='txt' id='outputMassage'/>coded Massage</p>
+	<p><input type='button' value='check' onclick='check()'/></p>
+	<p><input type='txt' id='OrigMassage'/>original Massage</p>
